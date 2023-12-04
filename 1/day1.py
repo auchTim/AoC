@@ -3,7 +3,7 @@ def import_values(path):
     return input_file
 
 def main():
-    Values = import_values('./1/input_test')
+    Values = import_values('./1/problem_values')
     output = 0
     mapping = {'one': 1 , 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
     mapping_keys = list(mapping.keys())

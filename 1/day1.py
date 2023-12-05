@@ -14,16 +14,16 @@ def main():
         for key in mapping_keys:
             if key in word:  
                 kindex = word.index(key)
-                numbers.append((kindex, mapping[key]))
+                numbers.append([kindex, mapping[key]])
 
         for index, char in enumerate(word):
             if char.isdigit():
-                numbers.append((index, int(char)))
-                
+                numbers.append([index , int(char)])
+
         print(numbers)
-        # still using the whole array instead of only the index value
-        # find a way to get the second value via accessing the first
-        lowest = min([min(sublist) for sublist in numbers])
+        # still using the whole subarray instead of only the first value to find min
+        # find a way to get the second value via accessing the first -> dictionaries? 2D array?
+        lowest =  min([min(sublist) for sublist in numbers])
         highest = max([max(sublist) for sublist in numbers])
         print(lowest, highest)
 

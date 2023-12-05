@@ -7,24 +7,32 @@ def main():
     output = 0
     mapping = {'one': 1 , 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
     mapping_keys = list(mapping.keys())
+
     for word in Values:
         numbers = []
-        last = 0
-        first = 0
+
         for key in mapping_keys:
-            if key in word:
-                word = word.replace(key,str(mapping[key]))
-        print(word)
-        for char in word:
+            if key in word:  
+                kindex = word.index(key)
+                numbers.append((kindex, mapping[key]))
+
+        for index, char in enumerate(word):
             if char.isdigit():
-                numbers.append(char)
+                numbers.append((index, int(char)))
+                
         print(numbers)
-        #print(numbers)
-        last = numbers[len(numbers) - 1]
-        first = numbers[0]
-        concat = str(first) + str(last)
-        number = int(concat)
-        output = output + number
+        # still using the whole array instead of only the index value
+        # find a way to get the second value via accessing the first
+        lowest = min([min(sublist) for sublist in numbers])
+        highest = max([max(sublist) for sublist in numbers])
+        print(lowest, highest)
+
+        #fix the adding of numbers to get the end result
+
+        #first = numbers[0]
+        #concat = str(first) + str(last)
+        #number = int(concat)
+        #output = output + number
     print(f"the secret number is: {output}")
 
 main()

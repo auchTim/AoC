@@ -3,36 +3,33 @@ def import_values(path):
     return input_file
 
 def main():
-    Values = import_values('./1/problem_values')
+    Values = import_values('./1/input')
     output = 0
     mapping = {'one': 1 , 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
     mapping_keys = list(mapping.keys())
 
     for word in Values:
-        numbers = []
+        numbers = {}
 
         for key in mapping_keys:
-            if key in word:  
+            if key in word:
                 kindex = word.index(key)
-                numbers.append([kindex, mapping[key]])
+                numbers.update({kindex : mapping[key]})
 
         for index, char in enumerate(word):
             if char.isdigit():
-                numbers.append([index , int(char)])
-
+                #print(index, char)
+                numbers.update({index : int(char)})
+        print("Index : Value")
         print(numbers)
-        # still using the whole subarray instead of only the first value to find min
-        # find a way to get the second value via accessing the first -> dictionaries? 2D array?
-        lowest =  min([min(sublist) for sublist in numbers])
-        highest = max([max(sublist) for sublist in numbers])
+
+        lowest = numbers[min(numbers.keys())]
+        highest = numbers[max(numbers.keys())]
+        print("erster Wert und letzter Wert")
         print(lowest, highest)
 
-        #fix the adding of numbers to get the end result
-
-        #first = numbers[0]
-        #concat = str(first) + str(last)
-        #number = int(concat)
-        #output = output + number
+        concat = str(lowest) + str(highest)
+        output = int(concat) + output
     print(f"the secret number is: {output}")
 
 main()

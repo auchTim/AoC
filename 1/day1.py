@@ -3,22 +3,24 @@ def import_values(path):
     return input_file
 
 def main():
-    Values = import_values('./1/input')
+    values = import_values('./1/input')
     output = 0
     mapping = {'one': 1 , 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
     mapping_keys = list(mapping.keys())
 
-    for word in Values:
+    for word in values:
         numbers = {}
 
         for key in mapping_keys:
-            if key in word:
-                kindex = word.index(key)
-                numbers.update({kindex : mapping[key]})
+            index = -1
+            while True:
+                index = word.find(key,index + 1)
+                if index == -1:
+                    break
+                numbers.update({index : mapping[key]})
 
         for index, char in enumerate(word):
             if char.isdigit():
-                #print(index, char)
                 numbers.update({index : int(char)})
         print("Index : Value")
         print(numbers)
